@@ -1,11 +1,19 @@
 from getter import syllables
-from getter import get_sample
+from getter import get_doc
 
 def is_vowel(letter):
     if letter.upper() in ["A", "E", "I", "O", "U"]:
         return True
 
     return False
+
+def ilokano_syllable_count(string):
+    count = 0
+    for character in string:
+        if is_vowel(character):
+            count += 1
+    
+    return count
 
 def ilokano_syllabifier(token):
     token_size = len(token)
@@ -34,10 +42,37 @@ def ilokano_syllabifier(token):
 
         return result
 
-test_dataset = get_sample(n = 20)
-print(test_dataset)
+filename = "biag"
+doc = get_doc(f"{filename}.txt")
 
-print("")
+file = open(f"./results/{filename}_results.csv", "w")
 
-for token in test_dataset:
-    print(token, ilokano_syllabifier(token))
+headers = [
+    "line",
+    "line_syllable_count",
+    "word_count",
+    "average_syllable",
+    "max_syllable_count",
+    "min_syllable_count\n",
+]
+
+file.write(",".join(headers))
+
+for index, line in enumerate(doc):
+    line_string = " ".join(line)
+    total_syb_count = ilokano_syllable_count(line_string)
+
+    word_count = len(line)
+
+    count_list = []
+    for token in line:
+        count_list.append(ilokano_syllable_count(token))
+
+    average_syb = sum(count_list) / len(count_list)
+
+    max_syb_count = max(count_list)
+    min_syb_count = min(count_list)
+
+    file.write(f"{index+1},{total_syb_count},{word_count},{average_syb},{max_syb_count},{min_syb_count}\n")
+
+file.close()
