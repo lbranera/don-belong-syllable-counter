@@ -8,6 +8,6 @@ The program generates two types of output:
 - A `.png` file displaying the histogram of line syllable count values.
 
 
-Primary Investigator.: Emmanual Jayson V. Bolata (`evbolata@up.edu.ph`)
-
-Developer: Lorenz Timothy Barco Ranera (`lbranera@up.edu.ph`)
+## About Us
+- Primary Investigator.: Emmanual Jayson V. Bolata (`evbolata@up.edu.ph`)
+- Developer: Lorenz Timothy Barco Ranera (`lbranera@up.edu.ph`)
