@@ -3,7 +3,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 from getter import get_doc
-from preprocessor import preprocess
+from preprocessor import preprocess_all
+from preprocessor import preprocess_hispanic_ortho
 
 def is_vowel(letter):
     if letter.upper() in ["A", "E", "I", "O", "U"]:
@@ -14,14 +15,15 @@ def is_vowel(letter):
 def ilokano_syllable_count(token, old_ortho=False):
     if (not old_ortho):
         count = 0
-        for character in token:
-            if is_vowel(character):
+        preprocessed_token = preprocess_hispanic_ortho(token)
+        for character in preprocessed_token:
+            if is_vowel(character) or (character == "1"):
                 count += 1
         
         return count
     else:
-        preprocessed_token = preprocess(token)
         count = 0
+        preprocessed_token = preprocess_all(token)
         for character in preprocessed_token:
             if is_vowel(character) or (character == "1"):
                 count += 1
@@ -96,9 +98,12 @@ def execute(filename):
     plt.close()
     #plt.show()
 
-folder_path = './input'
-filenames = os.listdir(folder_path)
+if __name__ == "__main__":
+    folder_path = './input'
+    filenames = os.listdir(folder_path)
 
-for filename in filenames:
-    print("Processing", filename)
-    execute(filename)
+    for filename in filenames:
+        print("Processing", filename)
+        execute(filename)
+
+    #print(ilokano_syllable_count(token="dacquel"))
