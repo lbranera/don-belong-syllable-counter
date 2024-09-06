@@ -13,6 +13,11 @@ def is_vowel(letter):
     return False
 
 def ilokano_syllable_count(token, old_ortho=False):
+    # special case
+    if (token == "tao"):
+        return 2
+
+    # general case
     if (not old_ortho):
         count = 0
         preprocessed_token = preprocess_hispanic_ortho(token)
