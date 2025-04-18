@@ -10,4 +10,4 @@ The program generates two types of output:
 
 ## About Us
 - Primary Investigator.: Emmanual Jayson V. Bolata (`evbolata@up.edu.ph`)
-- Developer: Lorenz Timothy Barco Ranera (`lbranera@up.edu.ph`)
+- Engineer: Lorenz Timothy Barco Ranera (`lbranera@up.edu.ph`)
